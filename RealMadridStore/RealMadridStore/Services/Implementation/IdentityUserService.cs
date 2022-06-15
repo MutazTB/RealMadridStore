@@ -56,7 +56,7 @@ namespace RealMadridStore.Services.Implementation
 
         public async Task Logout()
         {
-            CartVM.Products.Clear();
+            //CartVM.Products.Clear();
             await _signInManager.SignOutAsync();
         }
     }

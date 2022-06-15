@@ -210,7 +210,7 @@ namespace RealMadridStore.Controllers
             await _product.DeleteProduct(id);
             return RedirectToAction("Index", new { CategoryId = product.CategoryId });
         }
-
+        [Authorize]
         public async Task<IActionResult> AddToCart(int id)
         {
             // this is used to save the previous URL
