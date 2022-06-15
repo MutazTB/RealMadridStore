@@ -216,17 +216,23 @@ namespace RealMadridStore.Controllers
             // this is used to save the previous URL
             string urlAnterior = Request.Headers["Referer"].ToString();
 
-            Product product = await _product.GetProduct(id);
-            
-            if (product == null)
+
+            Product productInDb = await _product.GetProduct(id);
+
+            string product = productInDb.Name;
+
+            CookieOptions cookieOptions = new CookieOptions();
+            cookieOptions.Expires = new DateTimeOffset(DateTime.Now.AddDays(7));
+
+            if (HttpContext.Request.Cookies["CartCookie"] == null)
             {
-                throw new Exception("Product is null");
+                HttpContext.Response.Cookies.Append("CartCookie", product, cookieOptions);
             }
-
-            //CartVM vm = new CartVM();
-
-            //vm.Products.Add(product);
-            CartVM.Products.Add(product);
+            else
+            {
+                string cookie = HttpContext.Request.Cookies["CartCookie"] + "," + product;
+                HttpContext.Response.Cookies.Append("CartCookie", cookie, cookieOptions);
+            }
 
             return Redirect(urlAnterior);
         }

@@ -14,12 +14,12 @@ namespace RealMadridStore.Pages
     public class CartModel : PageModel
     {
         public string Name { get; set; }
-        public List<Product> Products { get; set; }
+        public string Products { get; set; }
 
         public void OnGet()
         {
             Name = User.Identity.Name;
-            Products = CartVM.Products;
+            Products = Request.Cookies["CartCookie"];
         }
 
     }
