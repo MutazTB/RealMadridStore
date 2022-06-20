@@ -10,7 +10,7 @@ using RealMadridStore.Models.ViewModel;
 
 namespace RealMadridStore.Pages
 {
-    [Authorize]
+    
     public class CartModel : PageModel
     {
         public string Name { get; set; }

@@ -1,7 +1,12 @@
-﻿@page
+﻿
+@page
 @model RealMadridStore.Pages.CartModel
 @{
 }
+@using Microsoft.AspNetCore.Identity
+@using RealMadridStore.Models
+@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> userManager;
 
 <h2>@Model.Name Cart Products</h2>
 
@@ -19,8 +24,16 @@ else
             <li>
                 @product
             </li>
-            
+
         }
-        </ul>
+    </ul>
 }
 
+@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+<p>Connected</p>
+}
+
+else { 
+<p>Not Connected</p>
+}
