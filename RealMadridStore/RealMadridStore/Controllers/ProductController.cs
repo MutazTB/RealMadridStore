@@ -238,49 +238,6 @@ namespace RealMadridStore.Controllers
             }
 
             return Redirect(urlAnterior);
-        }
-        //[HttpPost]
-        //public async Task<IActionResult> Details(CartVM cart)
-        //{
-        //    Cart cart1 = new Cart
-        //    {
-        //        ID = cart.ID,
-        //        Product = cart.Product,
-        //        ProductId = cart.ProductId,
-        //        Count = cart.Count,                
-        //    };
-        //    cart.ID = 0;
-        //    if (ModelState.IsValid) 
-        //    {
-        //        // We will add to cart
-        //        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
-        //        cart1.UserId = userId;
-
-        //        Cart cartFromDB = await _cart.GetCart(userId);
-        //        if(cartFromDB == null)
-        //        {
-        //            await _cart.CreateCart(cart1);
-        //        }
-        //        else
-        //        {
-        //            cartFromDB.Count += cart1.Count;
-        //            await _cart.UpdateCart(cartFromDB.ID , cartFromDB);
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    else
-        //    {
-        //        var product = await _product.GetProduct(cart.ProductId);
-        //        cart.Product = product;
-        //        if (product == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        return View(cart1);
-        //    }
-            
-        //}
-
+        }     
     }
 }
