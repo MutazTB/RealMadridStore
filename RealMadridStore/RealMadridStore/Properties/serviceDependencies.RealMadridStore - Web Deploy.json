@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/realmadridstoredbserver/databases/RealMadridStore_db",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/realmadridstoreserver/databases/RealMadridStore_db",
       "type": "mssql.azure",
       "connectionId": "ConnectionStrings:DefaultConnection",
       "secretStore": "AzureAppSettings"

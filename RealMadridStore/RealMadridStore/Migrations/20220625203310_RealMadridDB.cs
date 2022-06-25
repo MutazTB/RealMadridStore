@@ -263,8 +263,8 @@ namespace RealMadridStore.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "ad376a8f", "b1407458-dac8-45a1-bd95-56f94ed8c277", "Admin", "Admin" },
-                    { "bd586a8f", "7fa5371e-e28d-42ee-8fee-08d0a47a9ff1", "Editor", "Editor" }
+                    { "ad376a8f", "80a2a605-a3b7-47a6-8c3e-f3fead3c7a4b", "Admin", "Admin" },
+                    { "bd586a8f", "cbbba161-243b-47ac-87d4-d6ac23d69fba", "Editor", "Editor" }
                 });
 
             migrationBuilder.InsertData(
@@ -272,8 +272,8 @@ namespace RealMadridStore.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "a18be9c0", 0, "b684e554-5344-4e82-b9dd-63dd5dadbc0e", "admin@gmail.com", false, false, null, "admin@gmail.com", "admin", "AQAAAAEAACcQAAAAEAFYbWhCIqI9YzECSzQjx1ErygY0HpPRZsZDVL/+pHnpZ9n53XIsmtmXW4m3gcJvoA==", null, false, "", false, "admin" },
-                    { "a50ze710", 0, "6747c398-b524-49a4-93b7-c7d24b8a6297", "editor@gmail.com", false, false, null, "editor@gmail.com", "editor", "AQAAAAEAACcQAAAAEAwEZSlyyxecMSgajra8bxLPc7otLncbMcTtYpcqWx6D1gr3sy26Pxfgvk9fQfYXag==", null, false, "", false, "editor" }
+                    { "a18be9c0", 0, "bd31debe-aca1-418e-9bbe-6cd37cf0a874", "admin@gmail.com", false, false, null, "admin@gmail.com", "admin", "AQAAAAEAACcQAAAAEApdfl/vqRYuuaRHLmSCmTtsjK8pBo+o3skaI4Hc4MHHeXkACNV06EzAQJsAh/JDvA==", null, false, "", false, "admin" },
+                    { "a50ze710", 0, "d197ff4a-228e-4bf1-b779-b2e1a7f6f9de", "editor@gmail.com", false, false, null, "editor@gmail.com", "editor", "AQAAAAEAACcQAAAAEJpQSxtSLVCdL699J3aPYJMM6hbW7wranyKI2sS9bfOAeNL3lOtPrGrz3x3hBHYhzQ==", null, false, "", false, "editor" }
                 });
 
             migrationBuilder.InsertData(
@@ -300,10 +300,10 @@ namespace RealMadridStore.Migrations
                 columns: new[] { "Id", "CategoryId", "Description", "ImageUrl", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, 1, "Real Madrid Home Jersey", "Real Madrid Home Jersey", "Real Madrid Home Jersey", 70.0 },
-                    { 2, 1, "Real Madrid Home Jersey", "Real Madrid Home Jersey", "Real Madrid Home Jersey", 12.0 },
-                    { 3, 2, "Mens Training T-Shirt 22/23 Black", "Mens Training T-Shirt 22/23 Black.Url", "Mens Training T-Shirt 22/23 Black", 80.0 },
-                    { 4, 3, "Real Madrid Crest Logo Cap - Grey", "Real Madrid Crest Logo Cap - Grey.Url", "Real Madrid Crest Logo Cap - Grey", 30.0 }
+                    { 1, 1, "Real Madrid Home Jersey", "~/images/RealMadrid.png", "Real Madrid Home Jersey", 70.0 },
+                    { 2, 1, "Real Madrid Home Jersey", "~/images/RealMadrid.png", "Real Madrid Home Jersey", 12.0 },
+                    { 3, 2, "Mens Training T-Shirt 22/23 Black", "~/images/TRAINING.png", "Mens Training T-Shirt 22/23 Black", 80.0 },
+                    { 4, 3, "Real Madrid Crest Logo Cap - Grey", "~/images/A&G.png", "Real Madrid Crest Logo Cap - Grey", 30.0 }
                 });
 
             migrationBuilder.CreateIndex(

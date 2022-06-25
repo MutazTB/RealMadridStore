@@ -49,14 +49,14 @@ namespace RealMadridStore.Migrations
                         new
                         {
                             Id = "ad376a8f",
-                            ConcurrencyStamp = "b1407458-dac8-45a1-bd95-56f94ed8c277",
+                            ConcurrencyStamp = "80a2a605-a3b7-47a6-8c3e-f3fead3c7a4b",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "bd586a8f",
-                            ConcurrencyStamp = "7fa5371e-e28d-42ee-8fee-08d0a47a9ff1",
+                            ConcurrencyStamp = "cbbba161-243b-47ac-87d4-d6ac23d69fba",
                             Name = "Editor",
                             NormalizedName = "Editor"
                         });
@@ -247,13 +247,13 @@ namespace RealMadridStore.Migrations
                         {
                             Id = "a18be9c0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b684e554-5344-4e82-b9dd-63dd5dadbc0e",
+                            ConcurrencyStamp = "bd31debe-aca1-418e-9bbe-6cd37cf0a874",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAFYbWhCIqI9YzECSzQjx1ErygY0HpPRZsZDVL/+pHnpZ9n53XIsmtmXW4m3gcJvoA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEApdfl/vqRYuuaRHLmSCmTtsjK8pBo+o3skaI4Hc4MHHeXkACNV06EzAQJsAh/JDvA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -263,13 +263,13 @@ namespace RealMadridStore.Migrations
                         {
                             Id = "a50ze710",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6747c398-b524-49a4-93b7-c7d24b8a6297",
+                            ConcurrencyStamp = "d197ff4a-228e-4bf1-b779-b2e1a7f6f9de",
                             Email = "editor@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "editor@gmail.com",
                             NormalizedUserName = "editor",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAwEZSlyyxecMSgajra8bxLPc7otLncbMcTtYpcqWx6D1gr3sy26Pxfgvk9fQfYXag==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJpQSxtSLVCdL699J3aPYJMM6hbW7wranyKI2sS9bfOAeNL3lOtPrGrz3x3hBHYhzQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -399,7 +399,7 @@ namespace RealMadridStore.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Description = "Real Madrid Home Jersey",
-                            ImageUrl = "Real Madrid Home Jersey",
+                            ImageUrl = "~/images/RealMadrid.png",
                             Name = "Real Madrid Home Jersey",
                             Price = 70.0
                         },
@@ -408,7 +408,7 @@ namespace RealMadridStore.Migrations
                             Id = 2,
                             CategoryId = 1,
                             Description = "Real Madrid Home Jersey",
-                            ImageUrl = "Real Madrid Home Jersey",
+                            ImageUrl = "~/images/RealMadrid.png",
                             Name = "Real Madrid Home Jersey",
                             Price = 12.0
                         },
@@ -417,7 +417,7 @@ namespace RealMadridStore.Migrations
                             Id = 3,
                             CategoryId = 2,
                             Description = "Mens Training T-Shirt 22/23 Black",
-                            ImageUrl = "Mens Training T-Shirt 22/23 Black.Url",
+                            ImageUrl = "~/images/TRAINING.png",
                             Name = "Mens Training T-Shirt 22/23 Black",
                             Price = 80.0
                         },
@@ -426,7 +426,7 @@ namespace RealMadridStore.Migrations
                             Id = 4,
                             CategoryId = 3,
                             Description = "Real Madrid Crest Logo Cap - Grey",
-                            ImageUrl = "Real Madrid Crest Logo Cap - Grey.Url",
+                            ImageUrl = "~/images/A&G.png",
                             Name = "Real Madrid Crest Logo Cap - Grey",
                             Price = 30.0
                         });
