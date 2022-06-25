@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace RealMadridStore.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IProduct _product;
@@ -42,25 +43,36 @@ namespace RealMadridStore.Controllers
             };
             return View(response);
         }
-        [AllowAnonymous]
         public async Task<IActionResult> AddItemToShoppingCart(int id)
         {
+            // this is used to save the previous URL
+            string urlAnterior = Request.Headers["Referer"].ToString();
+
             var item = await _product.GetProduct(id);
             if (item != null)
             {
                 _shoppingCart.AddItemToCart(item);
             }
-            return RedirectToAction(nameof(ShoppingCart));
+            return Redirect(urlAnterior);
         }
+
         public async Task<IActionResult> RemoveItemFromShoppingCart(int id)
         {
             var item = await _product.GetProduct(id);
             if (item != null)
             {
-                _shoppingCart.RemoveItemFromCart(item);
+                await _shoppingCart.RemoveItemFromCart(item);
             }
             return RedirectToAction(nameof(ShoppingCart));
         }
+
+        public async Task<IActionResult> RemoveAllItemsFromShoppingCart(int id)
+        {
+            await _shoppingCart.RemoveAllItemsFromCart(id);
+            
+            return RedirectToAction(nameof(ShoppingCart));
+        }
+
         public async Task<IActionResult> CompleteOrder()
         {
             var items = _shoppingCart.GetShoppingCartItems();
@@ -74,7 +86,7 @@ namespace RealMadridStore.Controllers
                 message += $"you bought a  {shopping.product.Name}  for a price   {shopping.product.Price} <br/>";
             }
             await _email.SendEmail(message, "22029646@student.ltuc.com", "Order Summary");
-            await _email.SendEmail(message, "mutazaltbakhi900@gmail.com", "Order Summary");
+            await _email.SendEmail(message, userEmailAddress, "Order Summary");
             await _email.SendEmail(message, userEmailAddress, "Order Summary");
             return View();
         }
