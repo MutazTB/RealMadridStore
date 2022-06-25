@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RealMadridStore.Migrations
 {
-    public partial class RealMadridDB : Migration
+    public partial class AddCart : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -167,6 +167,26 @@ namespace RealMadridStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "products",
                 columns: table => new
                 {
@@ -189,13 +209,62 @@ namespace RealMadridStore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingCartItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    productId = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    ShoppingCartId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCartItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCartItems_products_productId",
+                        column: x => x.productId,
+                        principalTable: "products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "ad376a8f", "bdb6ed66-c3dd-49b8-8ac6-ccfef68d84f6", "Admin", "Admin" },
-                    { "bd586a8f", "98ec152c-c26a-4576-9b69-cd1ec602cd05", "Editor", "Editor" }
+                    { "ad376a8f", "ba6d3d79-7a9f-42d9-b1da-2e531157601f", "Admin", "Admin" },
+                    { "bd586a8f", "95f394f7-7501-4d89-a7fc-371d957b8bb4", "Editor", "Editor" }
                 });
 
             migrationBuilder.InsertData(
@@ -203,8 +272,8 @@ namespace RealMadridStore.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "a18be9c0", 0, "8dab935c-45b2-47b4-af4d-b00a9683c706", "admin@gmail.com", false, false, null, "admin@gmail.com", "admin", "AQAAAAEAACcQAAAAEGpN8TuR6VJwME6NYrOSyebdyVlX37MJijvfwsZnt6mU4ua/qkeDDeKDRB7IVI3lgg==", null, false, "", false, "admin" },
-                    { "a50ze710", 0, "8017136a-f271-42de-8416-958cb4ea2634", "editor@gmail.com", false, false, null, "editor@gmail.com", "editor", "AQAAAAEAACcQAAAAELPsrLzUV0+xK96DKFoAYV5s4BjJVkl9nsNJC/Eq5yHlrQLZC9LNTPOOR+0jE6umCQ==", null, false, "", false, "editor" }
+                    { "a18be9c0", 0, "169808a2-1188-4118-858c-4147c0869565", "admin@gmail.com", false, false, null, "admin@gmail.com", "admin", "AQAAAAEAACcQAAAAEMxAl4AI4cp82h/KmCEaEcZ9aLqEdW2SrVXZWujFGYOaiYbjeMbej3sJ9gMQ4rNOBw==", null, false, "", false, "admin" },
+                    { "a50ze710", 0, "e70a1539-8544-4f11-975a-8fd42ddf18f4", "editor@gmail.com", false, false, null, "editor@gmail.com", "editor", "AQAAAAEAACcQAAAAEEoxV27pPxTrNjUW+HJffn74hw208cu59uLIdpEH68qyG9TV0tm4pUMdIEayAtqG2A==", null, false, "", false, "editor" }
                 });
 
             migrationBuilder.InsertData(
@@ -275,9 +344,29 @@ namespace RealMadridStore.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_OrderId",
+                table: "OrderItems",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_ProductId",
+                table: "OrderItems",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_products_CategoryId",
                 table: "products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCartItems_productId",
+                table: "ShoppingCartItems",
+                column: "productId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -298,10 +387,19 @@ namespace RealMadridStore.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "products");
+                name: "OrderItems");
+
+            migrationBuilder.DropTable(
+                name: "ShoppingCartItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "products");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

@@ -9,8 +9,9 @@ using RealMadridStore.Models.ViewModel;
 using RealMadridStore.Services;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
+//using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace RealMadridStore.Controllers
@@ -19,11 +20,12 @@ namespace RealMadridStore.Controllers
     {
         private readonly IProduct _product;
         private readonly IConfiguration _configuration;
+       
 
         public ProductController(IProduct product, IConfiguration configuration)
         {
             _product = product;
-            _configuration = configuration;
+            _configuration = configuration;            
         }
 
         [AllowAnonymous]
@@ -52,7 +54,8 @@ namespace RealMadridStore.Controllers
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var product = await _product.GetProduct(id);
+            
+            var product = await _product.GetProduct(id);           
             if (product == null)
             {
                 return NotFound();
@@ -173,7 +176,7 @@ namespace RealMadridStore.Controllers
                 {
                     var pro = await _product.UpdateProduct(id, product);
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception)
                 {
                     return NotFound();
                 }
@@ -215,7 +218,7 @@ namespace RealMadridStore.Controllers
         {
             // this is used to save the previous URL
             string urlAnterior = Request.Headers["Referer"].ToString();
-
+            var userName = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
 
             Product productInDb = await _product.GetProduct(id);
 
@@ -224,18 +227,60 @@ namespace RealMadridStore.Controllers
             CookieOptions cookieOptions = new CookieOptions();
             cookieOptions.Expires = new DateTimeOffset(DateTime.Now.AddDays(7));
 
-            if (HttpContext.Request.Cookies["CartCookie"] == null)
+            if (HttpContext.Request.Cookies[userName] == null)
             {
-                HttpContext.Response.Cookies.Append("CartCookie", product, cookieOptions);
+                HttpContext.Response.Cookies.Append(userName, product, cookieOptions);
             }
             else
             {
-                string cookie = HttpContext.Request.Cookies["CartCookie"] + "," + product;
-                HttpContext.Response.Cookies.Append("CartCookie", cookie, cookieOptions);
+                string cookie = HttpContext.Request.Cookies[userName] + "," + product;
+                HttpContext.Response.Cookies.Append(userName, cookie, cookieOptions);
             }
 
             return Redirect(urlAnterior);
         }
+        //[HttpPost]
+        //public async Task<IActionResult> Details(CartVM cart)
+        //{
+        //    Cart cart1 = new Cart
+        //    {
+        //        ID = cart.ID,
+        //        Product = cart.Product,
+        //        ProductId = cart.ProductId,
+        //        Count = cart.Count,                
+        //    };
+        //    cart.ID = 0;
+        //    if (ModelState.IsValid) 
+        //    {
+        //        // We will add to cart
+        //        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+        //        cart1.UserId = userId;
+
+        //        Cart cartFromDB = await _cart.GetCart(userId);
+        //        if(cartFromDB == null)
+        //        {
+        //            await _cart.CreateCart(cart1);
+        //        }
+        //        else
+        //        {
+        //            cartFromDB.Count += cart1.Count;
+        //            await _cart.UpdateCart(cartFromDB.ID , cartFromDB);
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    else
+        //    {
+        //        var product = await _product.GetProduct(cart.ProductId);
+        //        cart.Product = product;
+        //        if (product == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        return View(cart1);
+        //    }
+            
+        //}
 
     }
 }

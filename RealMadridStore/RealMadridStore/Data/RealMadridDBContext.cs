@@ -15,6 +15,13 @@ namespace RealMadridStore.Data
 
         public DbSet<Category> categories { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderItem> OrderItems { get; set; }
+        
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
+
         public RealMadridDBContext(DbContextOptions options) : base(options)
         {
         }
@@ -27,7 +34,7 @@ namespace RealMadridStore.Data
                 new Category { Id = 1, Name = "Clothes", Details = "Clothes" },
                 new Category { Id = 2, Name = "Cars", Details = "Cars" }
 
-              );
+              );            
 
             modelBuilder.Entity<Product>().HasData(
                new Product { Id = 1, Name = "Jeans", Description = "Jeans", ImageUrl = "Jeans.Url", Price = 12, CategoryId = 1 },

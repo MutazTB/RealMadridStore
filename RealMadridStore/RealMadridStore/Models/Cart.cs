@@ -5,10 +5,7 @@ using System.Threading.Tasks;
 
 namespace RealMadridStore.Models
 {
-    public class ErrorViewModel
+    public class Cart
     {
-        public string RequestId { get; set; }
-
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }

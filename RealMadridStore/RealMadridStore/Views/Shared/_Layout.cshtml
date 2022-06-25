@@ -28,7 +28,7 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Product" asp-action="AllProducts">All Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/Cart">My Cart</a>
+                            <a class="nav-link text-white" asp-controller="Orders" asp-action="ShoppingCart">My Cart</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {

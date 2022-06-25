@@ -39,7 +39,15 @@ namespace RealMadridStore.Services
 
         public async Task<Product> GetProduct(int Id)
         {
-            return await _context.products.FindAsync(Id);
+            return await _context.products.Select(p => new Product
+            {
+                Id = p.Id,
+                Name = p.Name,                
+                Price = p.Price,
+               ImageUrl = p.ImageUrl,
+               Description = p.Description
+               , CategoryId = p.CategoryId
+            }).FirstOrDefaultAsync(x => x.Id == Id);
         }
 
         public async Task<List<Product>> GetProducts(int? CategoryId)
