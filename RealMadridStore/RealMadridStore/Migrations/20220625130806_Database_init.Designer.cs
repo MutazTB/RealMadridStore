@@ -10,8 +10,8 @@ using RealMadridStore.Data;
 namespace RealMadridStore.Migrations
 {
     [DbContext(typeof(RealMadridDBContext))]
-    [Migration("20220624231554_AddCart")]
-    partial class AddCart
+    [Migration("20220625130806_Database_init")]
+    partial class Database_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,14 +51,14 @@ namespace RealMadridStore.Migrations
                         new
                         {
                             Id = "ad376a8f",
-                            ConcurrencyStamp = "ba6d3d79-7a9f-42d9-b1da-2e531157601f",
+                            ConcurrencyStamp = "5b8657d8-fdc4-433e-93ec-1b34ea34ec28",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "bd586a8f",
-                            ConcurrencyStamp = "95f394f7-7501-4d89-a7fc-371d957b8bb4",
+                            ConcurrencyStamp = "543468f5-97c0-4db0-893c-464d225e35a0",
                             Name = "Editor",
                             NormalizedName = "Editor"
                         });
@@ -249,13 +249,13 @@ namespace RealMadridStore.Migrations
                         {
                             Id = "a18be9c0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "169808a2-1188-4118-858c-4147c0869565",
+                            ConcurrencyStamp = "f63a9ba6-caf0-44ba-a849-7cb19f44ee8f",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMxAl4AI4cp82h/KmCEaEcZ9aLqEdW2SrVXZWujFGYOaiYbjeMbej3sJ9gMQ4rNOBw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC7XT5eBg1VMlSzbMvCjKAQRYOEigP9iPX44ZqlMo790jZk8XpBOWFPYk5kvwnCKOg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -265,13 +265,13 @@ namespace RealMadridStore.Migrations
                         {
                             Id = "a50ze710",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e70a1539-8544-4f11-975a-8fd42ddf18f4",
+                            ConcurrencyStamp = "5e64bec7-929b-4cbc-bbbc-bce4777186de",
                             Email = "editor@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "editor@gmail.com",
                             NormalizedUserName = "editor",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEoxV27pPxTrNjUW+HJffn74hw208cu59uLIdpEH68qyG9TV0tm4pUMdIEayAtqG2A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPCaTvOTlEW/KrF2UJXe2ZCM4dMftN1yEWsvqCsmhSI09gVDaEM007Jv4HiSjvLMAg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

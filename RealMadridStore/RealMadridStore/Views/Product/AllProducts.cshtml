@@ -8,9 +8,12 @@
 
 <h1>All Products</h1>
 
+@if (User.IsInRole("Admin")) { 
 <p>
     <a asp-action="CreateProduct">Create New</a>
 </p>
+}
+
 <div class="container py-4">
     <div class="row">
         @foreach (var item in Model)
@@ -28,10 +31,13 @@
                             <p class="text-muted mb-0">Available: <span class="fw-bold">Quantity</span></p>
                         </div>
                         <div class="text-warning d-flex justify-content-between mb-2">
-                            <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Cart</a>
+                            <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Add To Cart</a>
                             <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-dark btn-sm">Details</a>
-                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
-                            <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Edit</a>
+                                <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                            }
                         </div>
                     </div>
                 </div>

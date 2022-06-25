@@ -46,7 +46,7 @@ namespace RealMadridStore.Services.Implementation
             }
             _context.SaveChanges();
         }
-        public void RemoveItemFromCart(Product product)
+        public async Task RemoveItemFromCart(Product product)
         {
             var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(n => n.product.Id == product.Id && n.ShoppingCartId == ShoppingCartId);
             if (shoppingCartItem != null)
@@ -60,18 +60,29 @@ namespace RealMadridStore.Services.Implementation
                     _context.ShoppingCartItems.Remove(shoppingCartItem);
                 }
             }
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
             var ShoppingCartItems = _context.ShoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId).Include(n => n.product).ToList();
             return ShoppingCartItems;
         }
+
         public double GetShoppingCartTotal() => _context.ShoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId).Select(n => n.product.Price * n.Amount).Sum();
+
         public async Task ClearShoppingCartAsync()
         {
             var items = await _context.ShoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId).ToListAsync();
             _context.ShoppingCartItems.RemoveRange(items);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveAllItemsFromCart(int id)
+        {
+            var cartProducts = await _context.ShoppingCartItems.Where(x => x.productId == id).FirstAsync();
+            
+            _context.ShoppingCartItems.Remove(cartProducts);
+
             await _context.SaveChangesAsync();
         }
     }

@@ -44,9 +44,9 @@ namespace RealMadridStore.Services
                 Id = p.Id,
                 Name = p.Name,                
                 Price = p.Price,
-               ImageUrl = p.ImageUrl,
-               Description = p.Description
-               , CategoryId = p.CategoryId
+                ImageUrl = p.ImageUrl,
+                Description = p.Description,
+                CategoryId = p.CategoryId
             }).FirstOrDefaultAsync(x => x.Id == Id);
         }
 

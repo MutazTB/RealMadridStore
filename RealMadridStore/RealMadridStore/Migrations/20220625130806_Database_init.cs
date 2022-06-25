@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RealMadridStore.Migrations
 {
-    public partial class AddCart : Migration
+    public partial class Database_init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -263,8 +263,8 @@ namespace RealMadridStore.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "ad376a8f", "ba6d3d79-7a9f-42d9-b1da-2e531157601f", "Admin", "Admin" },
-                    { "bd586a8f", "95f394f7-7501-4d89-a7fc-371d957b8bb4", "Editor", "Editor" }
+                    { "ad376a8f", "5b8657d8-fdc4-433e-93ec-1b34ea34ec28", "Admin", "Admin" },
+                    { "bd586a8f", "543468f5-97c0-4db0-893c-464d225e35a0", "Editor", "Editor" }
                 });
 
             migrationBuilder.InsertData(
@@ -272,8 +272,8 @@ namespace RealMadridStore.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "a18be9c0", 0, "169808a2-1188-4118-858c-4147c0869565", "admin@gmail.com", false, false, null, "admin@gmail.com", "admin", "AQAAAAEAACcQAAAAEMxAl4AI4cp82h/KmCEaEcZ9aLqEdW2SrVXZWujFGYOaiYbjeMbej3sJ9gMQ4rNOBw==", null, false, "", false, "admin" },
-                    { "a50ze710", 0, "e70a1539-8544-4f11-975a-8fd42ddf18f4", "editor@gmail.com", false, false, null, "editor@gmail.com", "editor", "AQAAAAEAACcQAAAAEEoxV27pPxTrNjUW+HJffn74hw208cu59uLIdpEH68qyG9TV0tm4pUMdIEayAtqG2A==", null, false, "", false, "editor" }
+                    { "a18be9c0", 0, "f63a9ba6-caf0-44ba-a849-7cb19f44ee8f", "admin@gmail.com", false, false, null, "admin@gmail.com", "admin", "AQAAAAEAACcQAAAAEC7XT5eBg1VMlSzbMvCjKAQRYOEigP9iPX44ZqlMo790jZk8XpBOWFPYk5kvwnCKOg==", null, false, "", false, "admin" },
+                    { "a50ze710", 0, "5e64bec7-929b-4cbc-bbbc-bce4777186de", "editor@gmail.com", false, false, null, "editor@gmail.com", "editor", "AQAAAAEAACcQAAAAEPCaTvOTlEW/KrF2UJXe2ZCM4dMftN1yEWsvqCsmhSI09gVDaEM007Jv4HiSjvLMAg==", null, false, "", false, "editor" }
                 });
 
             migrationBuilder.InsertData(
