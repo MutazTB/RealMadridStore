@@ -1,10 +1,5 @@
 ﻿@model RealMadridStore.Models.Product
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-@using Microsoft.AspNetCore.Identity
-@using RealMadridStore.Models
-@inject SignInManager<ApplicationUser> signInManager;
-@inject UserManager<ApplicationUser> userManager;
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -47,9 +42,9 @@
         <a asp-action="Index" asp-route-id="@Model.CategoryId">Back to List</a>
     </div>*@
 
-@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
-    <section style="background-color: #eee;">
+    @*<section style="background-color: #eee;">
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-4">
@@ -68,40 +63,132 @@
                                 <div>
                                     <p><a href="#!" class="text-dark">@Model.Name</a></p>
 
+                                </div>*@
+    @*<div>
+            <div class="d-flex flex-row justify-content-end mt-1 mb-4 text-danger">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="small text-muted">Rated 4.0/5</p>
+        </div>*@
+    @*</div>
+                            </div>
+                            <hr class="my-0" />
+                            <div class="card-body pb-0">
+                                <div class="d-flex justify-content-between">
+                                    <p>@Model.Price JD</p>
+                                    <p class="text-dark">Available : Quantity</p>
                                 </div>
-                                @*<div>
-                                        <div class="d-flex flex-row justify-content-end mt-1 mb-4 text-danger">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <p class="small text-muted">Rated 4.0/5</p>
-                                    </div>*@
+                                <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
+                                    <a asp-action="Index" asp-route-id="@Model.CategoryId" class="text-dark fw-bold">Cancel</a>
+                                    <button type="button" class="btn btn-primary">Buy now</button>
+                                </div>
                             </div>
-                        </div>
-                        <hr class="my-0" />
-                        <div class="card-body pb-0">
-                            <div class="d-flex justify-content-between">
-                                <p>@Model.Price JD</p>
-                                <p class="text-dark">Available : Quantity</p>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
-                                <a asp-action="Index" asp-route-id="@Model.CategoryId" class="text-dark fw-bold">Cancel</a>
-                                <button type="button" class="btn btn-primary">Buy now</button>
-                            </div>
-                        </div>
-                        <div class="card-body">
+                            <div class="card-body">
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>*@
 
 }
 else
 {
     <p> not admin</p>
 }
+
+
+
+
+<form method="post">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="container backgroundWhite">
+        <div class="card">
+            <div class="card-header bg-light text-light ml-0 row container">
+                <div class="col-12 col-md-6">
+                    <h1 class="text-primary">--@Model.Name--</h1>
+                    @*<p class="text-warning">by --AUTHOR--</p>*@
+                </div>
+                @*<div class="col-12 col-md-6 text-md-right pt-4">
+                        <span class="badge badge-success pt-2" style="height:30px;">--COVER TYPE--</span>
+                        <span class="badge badge-warning pt-2" style="height:30px;">@Model.Name</span>
+                    </div>*@
+            </div>
+            <div class="card-body">
+                <div class="container rounded p-2">
+                    <div class="row">
+                        <div class="col-8 col-lg-8">
+
+                            <div class="row pl-2">
+                                <h5 class="text-muted pb-2">Price: <span>$ @Model.Price</span></h5>
+                                <span asp-validation-for="@Model.Price" class="text-danger"></span>
+                            </div>
+                            @*<div class="row pl-2">
+                                    <h5 class="text-muted">ISBN : --ISBN--</h5>
+                                </div>
+                                <div class="row text-center pl-2">
+                                    <div class="p-1 col-2 bg-secondary border-bottom">
+                                        <div>Quantity</div>
+                                    </div>
+                                    <div class="p-1 col-2 bg-secondary border-bottom">
+                                        <div>1-49</div>
+                                    </div>
+                                    <div class="p-1 col-2 bg-secondary border-bottom">
+                                        <div>50-99</div>
+                                    </div>
+                                    <div class="p-1 col-2 bg-secondary border-bottom">
+                                        <div>100+</div>
+                                    </div>
+                                </div>*@
+                            @*<div class="row text-center pl-2" style="color:maroon; font-weight:bold">
+                                    <div class="p-1 col-2 bg-secondary">
+                                        <div>Price</div>
+                                    </div>
+                                    <div class="p-1 col-2 bg-secondary">
+                                        <div>--Price--</div>
+                                    </div>
+                                    <div class="p-1 col-2 bg-secondary">
+                                        <div>--PRICE 50--</div>
+                                    </div>
+                                    <div class="p-1 col-2 bg-secondary">
+                                        <div>--PRICE 100--</div>
+                                    </div>
+                                </div>*@
+                            <div class="row pl-2">
+                                <p class="text-secondary">@Model.Description --Description--</p>
+                                <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                            </div>
+                            <div class="row pl-2">
+                                <div class="col-2 text-primary"><h4>Count</h4></div>
+                                <div class="col-10">
+                                    <input class="form-control" />
+                                    <span  class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-3 offset-lg-1 text-center">
+                            <img src="@Model.ImageUrl" width="100%" class="rounded" />
+                            <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-12 col-md-6 pb-1">
+                        <a asp-action="Index" class="btn btn-success form-control  btn-square btn-lg" style="height:50px;">Back to List</a>
+                    </div>
+                    <div class="col-12 col-md-6 pb-1">
+
+                        <button asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id" value="Add to Cart" class="btn btn-primary btn-square btn-lg form-control" style="height:50px;">Add to Cart</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

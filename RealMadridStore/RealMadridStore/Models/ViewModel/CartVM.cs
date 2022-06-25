@@ -7,11 +7,23 @@ namespace RealMadridStore.Models.ViewModel
 {
     public class CartVM
     {
-        public static List<Product> Products { get; set; }
+        public int ID { get; set; }
+        
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
 
-        static CartVM()
-        {
-            Products = new List<Product>();
-        }
+        public string UserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+
+        public int Count { get; set; }
+
+        public string ProductName { get; set; }
+
+        public double Price { get; set; }
+
+        public string Description { get; set; }
+
+        public string ImageUrl { get; set; }
+       
     }
 }

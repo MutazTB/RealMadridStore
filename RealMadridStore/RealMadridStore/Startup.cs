@@ -49,6 +49,15 @@ namespace RealMadridStore
             services.AddTransient<ICategory, CategoryService>();
             services.AddTransient<IProduct, ProductService>();
             services.AddTransient<IUserService, IdentityUserService>();
+            services.AddTransient<IOrder, OrdersService>();
+            services.AddScoped<ShoppingCart>();
+            services.AddScoped<EmailService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddMemoryCache();
+            services.AddSession();
+            
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,7 +77,7 @@ namespace RealMadridStore
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
 

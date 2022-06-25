@@ -4,7 +4,7 @@ using RealMadridStore.Models;
 using RealMadridStore.Services;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
+//using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -98,7 +98,7 @@ namespace RealMadridStore.Controllers
                     var cate = await _category.UpdateCategory(id, category);
 
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception)
                 {
                     return NotFound();
                 }

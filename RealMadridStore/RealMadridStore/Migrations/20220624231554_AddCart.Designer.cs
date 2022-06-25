@@ -10,8 +10,8 @@ using RealMadridStore.Data;
 namespace RealMadridStore.Migrations
 {
     [DbContext(typeof(RealMadridDBContext))]
-    [Migration("20220613213504_RealMadridDB")]
-    partial class RealMadridDB
+    [Migration("20220624231554_AddCart")]
+    partial class AddCart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,14 +51,14 @@ namespace RealMadridStore.Migrations
                         new
                         {
                             Id = "ad376a8f",
-                            ConcurrencyStamp = "bdb6ed66-c3dd-49b8-8ac6-ccfef68d84f6",
+                            ConcurrencyStamp = "ba6d3d79-7a9f-42d9-b1da-2e531157601f",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "bd586a8f",
-                            ConcurrencyStamp = "98ec152c-c26a-4576-9b69-cd1ec602cd05",
+                            ConcurrencyStamp = "95f394f7-7501-4d89-a7fc-371d957b8bb4",
                             Name = "Editor",
                             NormalizedName = "Editor"
                         });
@@ -249,13 +249,13 @@ namespace RealMadridStore.Migrations
                         {
                             Id = "a18be9c0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8dab935c-45b2-47b4-af4d-b00a9683c706",
+                            ConcurrencyStamp = "169808a2-1188-4118-858c-4147c0869565",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGpN8TuR6VJwME6NYrOSyebdyVlX37MJijvfwsZnt6mU4ua/qkeDDeKDRB7IVI3lgg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMxAl4AI4cp82h/KmCEaEcZ9aLqEdW2SrVXZWujFGYOaiYbjeMbej3sJ9gMQ4rNOBw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -265,13 +265,13 @@ namespace RealMadridStore.Migrations
                         {
                             Id = "a50ze710",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8017136a-f271-42de-8416-958cb4ea2634",
+                            ConcurrencyStamp = "e70a1539-8544-4f11-975a-8fd42ddf18f4",
                             Email = "editor@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "editor@gmail.com",
                             NormalizedUserName = "editor",
-                            PasswordHash = "AQAAAAEAACcQAAAAELPsrLzUV0+xK96DKFoAYV5s4BjJVkl9nsNJC/Eq5yHlrQLZC9LNTPOOR+0jE6umCQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEoxV27pPxTrNjUW+HJffn74hw208cu59uLIdpEH68qyG9TV0tm4pUMdIEayAtqG2A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -310,6 +310,54 @@ namespace RealMadridStore.Migrations
                             Details = "Cars",
                             Name = "Cars"
                         });
+                });
+
+            modelBuilder.Entity("RealMadridStore.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("RealMadridStore.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("RealMadridStore.Models.Product", b =>
@@ -371,6 +419,29 @@ namespace RealMadridStore.Migrations
                         });
                 });
 
+            modelBuilder.Entity("RealMadridStore.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShoppingCartId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("productId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("productId");
+
+                    b.ToTable("ShoppingCartItems");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -422,6 +493,34 @@ namespace RealMadridStore.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("RealMadridStore.Models.Order", b =>
+                {
+                    b.HasOne("RealMadridStore.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RealMadridStore.Models.OrderItem", b =>
+                {
+                    b.HasOne("RealMadridStore.Models.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RealMadridStore.Models.Product", "product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("product");
+                });
+
             modelBuilder.Entity("RealMadridStore.Models.Product", b =>
                 {
                     b.HasOne("RealMadridStore.Models.Category", "category")
@@ -433,9 +532,25 @@ namespace RealMadridStore.Migrations
                     b.Navigation("category");
                 });
 
+            modelBuilder.Entity("RealMadridStore.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("RealMadridStore.Models.Product", "product")
+                        .WithMany()
+                        .HasForeignKey("productId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("product");
+                });
+
             modelBuilder.Entity("RealMadridStore.Models.Category", b =>
                 {
                     b.Navigation("products");
+                });
+
+            modelBuilder.Entity("RealMadridStore.Models.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }
