@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealMadridStore.Data;
 
 namespace RealMadridStore.Migrations
 {
     [DbContext(typeof(RealMadridDBContext))]
-    partial class RealMadridDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220625160828_ljf")]
+    partial class ljf
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
